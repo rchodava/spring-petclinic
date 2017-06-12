@@ -1,0 +1,33 @@
+modified: 0
+services:
+- build: ""
+  errors: []
+  image:
+    repository: "mysql"
+    tag: "8.0.0"
+  includeRepositoryContent: false
+  name: "mysql"
+  performBuild: false
+  ports: []
+  properties:
+  - name: "MYSQL_USER"
+    value: ""
+  - name: "MYSQL_PASSWORD"
+    value: ""
+  - name: "MYSQL_ROOT_PASSWORD"
+    value: "petclinic"
+  - name: "MYSQL_DATABASE"
+    value: "petclinic"
+  run: ""
+- build: "mvn clean install -DskipTests"
+  errors: []
+  image:
+    repository: "maven"
+    tag: "3.3.9-jdk-8-alpine"
+  includeRepositoryContent: true
+  name: "maven"
+  performBuild: true
+  ports:
+  - "8080"
+  properties: []
+  run: "java -jar /app/target/spring-petclinic-1.5.1.jar"
